@@ -15,7 +15,12 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from AppBlog import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^$', views.ArticulosView.as_view(), name='home'),
+    url(r'^categoria/(?P<categoria>\w+)', views.articulos_categoria, name='articulo-categoria-list'),
+    url(r'^articulo/(?P<pk>\w+)/', views.ArticuloDetailView.as_view(), name='articulo-detail'),
+    url(r'^contacto/', views.ContactoView.as_view(), name='contacto')
 ]

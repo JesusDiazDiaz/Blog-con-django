@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from .models import Autor
+from .models import Autor, Contacto
+from django.forms import ModelForm, Textarea
 
 class AutorForm(UserCreationForm):
     class Meta:
@@ -14,3 +15,12 @@ class AutorForm(UserCreationForm):
             'sexo',
             'sobre_mi'
         )
+
+
+class ContactoForm(ModelForm):
+    class Meta:
+        model = Contacto
+        fields = '__all__'
+        widgets = {
+            'pregunta': Textarea(attrs={'rows': 6})
+        }

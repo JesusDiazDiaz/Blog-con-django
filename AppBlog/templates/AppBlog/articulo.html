@@ -1,0 +1,218 @@
+{% extends 'AppBlog/base.html' %}
+{% block contenido %}
+<!-- MAIN -->
+<main>
+
+    <!-- ARTICLE BLOG POST -->
+    <section class="articles articles-blog-post">
+        <article class="articles-blog-post">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-10 col-xs-12">
+
+                        <!-- TEXT ARTICLE -->
+                        <div class="articles-header">
+                            <time datetime="2016-10-11">{{ object.fecha_publicacion }}</time>
+                            {% if object.articulo_reciente %}
+                                <span class="articles-header-tag-green">Nuevo</span>
+                            {% endif %}
+
+                            <span class="articles-header-category"><a href="{% url 'articulo-categoria-list' object.categoria.nombre %}" class="{{ object.categoria.color }}" title="">{{ object.categoria|capfirst }}</a></span>
+                        </div>
+                        <div class="articles-content">
+                            <h1 class="articles-content-blog-post-title"><a href="#" title="Keeping Your Business And Clients Safe With Digital Policies">{{ object.titulo|upper }}</a></h1>
+                            <p>{{ object.contenido|capfirst }}</p>
+
+                            {% comment %}<blockquote class="secondary-quote">
+                                One thing to be careful is the natural instinct to try and abstract away the Redux
+                                boilerplate. There’s good reasons behind all
+                                those pieces. Make sure you tried it and understand the <strong>“why”</strong> before
+                                trying to blindly improve on it.
+                            </blockquote>{% endcomment %}
+                        </div>
+                    </div>
+
+
+                    <!-- SHARE THIS BLOCK -->
+                    <div class="col-lg-2 col-xs-12">
+                        <div class="articles-blog-post-share">
+                            <h3>Share this</h3>
+                            <div>
+                                <ul>
+                                    <li><a href="#" title="Facebook"><i class="fa fa-facebook"></i>Facebook</a></li>
+                                    <li><a href="#" title="Twitter"><i class="fa fa-twitter"></i>Twitter</a></li>
+                                    <li><a href="#" title="Google+"><i class="fa fa-google-plus"></i>Google+</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </article>
+    </section>
+    <!-- end ARTICLE BLOG POST -->
+
+    <!-- ARTICLE BOTTOM INFO -->
+    <div class="articles-info">
+
+        <!-- ARTICLE BOTTOM INFO AUTHOR -->
+        <section class="articles-info-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-10 col-xs-12">
+
+                        <div class="articles-footer">
+                            <ul class="articles-footer-info">
+                                <li><a title="" href="#" class="light-link"><i class="pe-7s-comment"></i> 7 Response</a></li>
+                                <li><a title="" href="#" class="light-link"><i class="pe-7s-like"></i> 1221</a></li>
+                            </ul>
+                            <button class="btn btn-light-blue"><a title="Write a response" href="#">Write a response</a></button>
+                        </div>
+                        {% load staticfiles %}
+                        <div class="articles-author">
+                            <img src="{% static 'img/profile-picture.png' %}" alt="" data-rjs="2">
+                            <div class="articles-author-right">
+                                <h4>Bill Gates</h4>
+                                <div class="social">
+                                    <a href="" title="Twitter"><i class="icon-social_twitter_circle"></i></a>
+                                    <a href="" title="Github"><i class="icon-social_github_circle"></i></a>
+                                    <a href="" title="LinkedIn"><i class="icon-social_linkedin_circle"></i></a>
+                                </div>
+                                <p>Compassionate entrepreneur on a mission to end homelessness. #jshomes Javascript, tech education, electronic music,
+                                    photography,
+                                    film, viral apps.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ARTICLE BOTTOM INFO LAST ARTICLES -->
+        <section class="articles-info-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h1 class="articles-info-section-title">Ultimos articulos</h1>
+                    </div>
+                </div>
+            </div>
+
+            <div class="banners">
+                <div class="container">
+                    <div class="row">
+                        {% for ua in ultimos_articulos %}
+                            <div class="col-lg-4 col-md-6 col-xs-12">
+                            <div class="banner-wrapper">
+                                <a href="{{ ua.get_absolute_url }}" title="{{ ua.titulo }}">
+                                    <div class="banner-wrapper-content">
+                                        <h1 class="h2">{{ ua.titulo|upper }}</h1>
+                                        <span class="category-tag category-tag-{{ ua.categoria.color }}">{{ ua.categoria|upper }}</span>
+                                        <time datetime="2016-03-01" class="">{{ ua.fecha_publicacion }}</time>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        {% endfor %}
+
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- ARTICLE BOTTOM INFO COMMENTS -->
+        <section class="articles-info-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-10 col-xs-12">
+                        <h1 class="articles-info-section-title">Responses <span class="italic">(7)</span></h1>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-10 col-xs-12">
+                        <div class="comments">
+                            <!-- WRITE NEW COMMENT -->
+                            <a title="" href="#" class="light-link comment button-comment">
+                                <span class="button-comment-span"><i class="pe-7s-comment"></i> Write a response</span>
+                            </a>
+
+                            <!-- COMMENTS LIST -->
+                            <ol>
+                                <li>
+                                    <div class="comment">
+                                        <img src="img/profile-picture5.png" alt="Profile Picture" data-rjs="2">
+                                        <div class="comment-content">
+                                            <h3>Jacob Amaro</h3>
+                                            <time datetime="2009-11-13T20:00Z">July 18, 2016 at 10:36 AM</time>
+                                            <p>Music is one of the driving forces in my life. I pray you will not let this be the last concert you attend. Dolly
+                                                Parton,
+                                                Kenny Rogers, Alabama, Three Dog Night, the first Bryan Adams: Cut like A Knife. And many more. Those I have
+                                                seen.
+                                                Nothing else like it. So proud u share music w your kids.</p>
+                                            <div class="comment-content-footer">
+                                                <button class="btn btn-small"><a href="#" title="Watch it">Reply</a></button>
+                                                <a title="Likes" href="#" class="light-link comment-content-footer-icon"><i class="pe-7s-like"></i> 0</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <ol class="comment-response">
+                                        <li>
+                                            <div class="comment">
+                                                <img src="img/profile-picture6.png" alt="Profile Picture" data-rjs="2">
+                                                <div class="comment-content">
+                                                    <h3>Jacob Amaro</h3>
+                                                    <time datetime="2009-11-13T20:00Z">July 18, 2016 at 10:36 AM</time>
+                                                    <p><span class="italic">@Jacob Amaro</span> My father would always play Matt Monro or Madonna or some other
+                                                        classic CD every Sunday
+                                                        morning, while my mom was cooking breakfast. It was always a good Sunday to wake up to. :)</p>
+                                                    <div class="comment-content-footer">
+                                                        <button class="btn btn-small"><a href="#" title="Watch it">Reply</a></button>
+                                                        <a title="Likes" href="#" class="light-link comment-content-footer-icon"><i class="pe-7s-like"></i>
+                                                            3</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+
+                                        <!-- WRITE RESPONSE -->
+                                        <li>
+                                            <a title="" href="#" class="light-link comment button-comment-center">
+                                                <span class="button-comment-text">Show more answers <i
+                                                        class="pe-7s-angle-down button-comment-text-right-icon"></i></span>
+                                            </a>
+                                        </li>
+                                    </ol>
+                                </li>
+
+                                <li class="comment">
+                                    <img src="img/profile-picture7.png" alt="Profile Picture" data-rjs="2">
+                                    <div class="comment-content">
+                                        <h3>Mitchell Parison</h3>
+                                        <time datetime="2009-11-13T20:00Z">July 20, 2016 at 16:32 AM</time>
+                                        <p>Beatiful article! Very helpful!</p>
+                                        <div class="comment-content-footer">
+                                            <button class="btn btn-small"><a href="#" title="Watch it">Reply</a></button>
+                                            <a title="Likes" href="#" class="light-link comment-content-footer-icon"><i class="pe-7s-like"></i> 124</a>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+    </div>
+    <!-- end ARTICLE BOTTOM INFO -->
+
+
+</main>
+<!-- end MAIN -->
+{% endblock %}

@@ -1,0 +1,160 @@
+{% load staticfiles %}
+<!doctype html>
+<html lang="es">
+<head>
+    <!-- GENERAL -->
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>DBlog - Blog for Developers</title>
+
+    <!-- EXTERNAL CSS -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/Pe-icon-7-stroke.css' %}">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/social-icons.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.theme.css' %}">
+
+    <!-- FONT AWESOME -->
+    <link rel="stylesheet" href="{% static 'font-awesome/css/font-awesome.min.css' %}">
+    <!-- MY CSS -->
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+
+    {% comment %}  <!-- FAVICON -->
+    <link rel="apple-touch-icon" sizes="76x76" href="images/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="images/apple-touch-icon-152x152.png">
+    <link rel="icon" type="image/png" href="images/favicon-196x196.png" sizes="196x196">
+    <link rel="icon" type="image/png" href="images/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="images/favicon-32x32.png" sizes="32x32">{% endcomment %}
+</head>
+<body>
+<header class="navbar-fixed-top">
+    <div class="container">
+        <div class="row">
+
+            <!-- HEADER TOP -->
+            <div class="col-lg-12">
+                <div class="header-top">
+                    <div class="header-top-logo">
+                        <a href="{% url 'home' %}" title="Logo"><img src="{% static 'img/logo.png' %}" alt="Dblog Logo"
+                                                                     data-rjs="2"></a>
+                    </div>
+                    <div class="header-top-text">
+                        <p><span class="font-italic">“Modern Javascript”</span>
+                            book is available! <a href="shop.html" title="Modern Javascript Book">Check out<i
+                                    class="pe-7s-angle-right"></i></a>
+                        </p>
+                    </div>
+                    <nav class="header-top-nav">
+                        <ul>
+                            <li class="header-top-nav-search">
+                                <a href="#" class="light-link" title="Search"><i class="fa fa-search" aria-hidden="true"></i></a>
+                                <form action="#" method="get">
+                                    <input type="text" class="form-control" placeholder="Buscar...">
+                                    <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+                                </form>
+                            </li>
+                            <li><a href="#" class="light-link" title="Menu">
+                                <div id="menu-animate-icon" class="header-top-nav-menu-icon">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                </div>
+                            </a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <!-- end HEADER TOP -->
+
+            <!-- HEADER NAVIGATION -->
+            <div class="col-lg-12">
+                <nav class="header-nav">
+                    <ul>
+                        <li class="active"><a href="{% url 'home' %}" title="Start page">Inicio</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" title="Blog articles">Categoria</a>
+                            <ul class="dropdown-menu">
+
+                                {% for a in categoria_list %}
+                                    <li class="nav-elipse-{{ a.color }}"><a
+                                            href="{% url 'articulo-categoria-list' a.nombre %}"
+                                            title="Articulos {{ a.nombre }}">{{ a.nombre|upper }}</a>
+                                    </li>
+                                {% endfor %}
+                                {% comment %}
+                              <li class="nav-elipse-blue"><a href="blog_list.html" title="Blog CSS articles">CSS</a>
+                                </li>
+                                <li class="nav-elipse-red"><a href="blog_list.html" title="Blog HTML articles">HTML</a>
+                                </li>
+                                <li class="nav-elipse-yellow"><a href="blog_list.html" title="Blog Javascript articles">Javascript</a>
+                                </li>ac
+                                <li class="nav-elipse-green"><a href="blog_list.html" title="Blog raphic articles">Graphic</a>
+                                </li>
+                                <li><a href="blog_post.html" title="Blog Post">Blog Post</a></li>{% endcomment %}
+                            </ul>
+                        </li>
+                        <li><a href="about_me.html" title="About me">Sobre mi</a></li>
+                        <li><a href="portfolio.html" title="My projects">Mis proyectos</a></li>
+                        <li><a href="{% url 'contacto' %}" title="Contact me">Contacto</a></li>
+                        {% comment %}<li class="buyproducts-link"><a href="shop.html" title="Buy products">Buy products</a></li>{% endcomment %}
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <!-- end HEADER NAVIGATION -->
+
+    </div>
+</header>
+<!-- end HEADER -->
+<!-- MOBILE NAVIGATION -->
+
+<nav class="mobile-nav header-nav">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <!-- Auto Copy Header Navigation -->
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- end MOBILE NAVIGATION -->
+{% block contenido %}{% endblock %}
+
+
+<footer>
+    <!-- COPYRIGHT -->
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="copyright">
+                    <ul>
+                        <li><a href="" title="Twitter"><i class="icon-social_twitter_circle"></i></a></li>
+                        <li><a href="" title="Github"><i class="icon-social_github_circle"></i></a></li>
+                        <li><a href="" title="LinkedIn"><i class="icon-social_linkedin_circle"></i></a></li>
+                    </ul>
+                    <p class="font-primary">&copy; Theme by <a href="#" title="" class="black">Komon.ski</a> . All
+                        Rights Reserved.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end COPYRIHT -->
+</footer>
+
+<!-- EXTERNAL JAVASCRIPT -->
+<script type="text/javascript" src="{% static 'js/jquery-1.12.0.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/tether.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/retina.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/owl.carousel.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/webfont.js' %}"></script>
+
+<!-- MY JAVASCRIPT -->
+<script type="text/javascript" src="{% static 'js/scripts.js' %}"></script>
+
+</body>
+</html>

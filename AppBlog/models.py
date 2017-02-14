@@ -1,12 +1,13 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
+from datetime import timedelta, date
 
 
 # Create your models here.
 
 class BaseNombre(models.Model):
-    nombre = models.CharField(max_length=100)
+    nombre = models.CharField(max_length=50)
 
     class Meta:
         abstract = True
@@ -22,7 +23,18 @@ class Profesion(BaseNombre):
 
 
 class Categoria(BaseNombre):
-    pass
+    COLORES = (
+        ('AZUL', 'blue'),
+        ('ROJO', 'red'),
+        ('AMARILLO', 'yelllow'),
+        ('VERDE', 'green')
+    )
+    color = models.CharField(max_length=8)
+
+
+class Contacto(BaseNombre):
+    email = models.EmailField(unique=True, verbose_name="E-Mail")
+    pregunta = models.TextField()
 
 
 class Autor(User):
@@ -58,6 +70,10 @@ class Articulo(models.Model):
 
     def __str__(self):
         return self.titulo
+
+    def articulo_reciente(self):
+        "Retorna True si el articulo es reciente"
+        return (date.today() - timedelta(days=2)) < self.fecha_publicacion
 
     def get_absolute_url(self):
         return reverse('articulo-detail', kwargs={'pk': self.pk})

@@ -1,0 +1,67 @@
+{% extends 'AppBlog/base.html' %}
+{% load widget_tweaks %}
+{% block contenido %}
+<!-- MAIN -->
+<main>
+    <div class="container">
+        <div class="row">
+
+            <!-- Details informations -->
+            <div class="col-xs-12">
+                <section class="contact two-column-inside white-box">
+                    <div class="contact-me">
+                        <h2>Contactame</h2>
+                        <ul>
+                            <li>
+                                <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                                <div class="contact-me-right">
+                                    <p>bill@microsoft.com</p>
+                                    <span class="contact-me-right-desc">E-mail</span>
+                                </div>
+                            </li>
+                            <li>
+                               <i class="fa fa-phone" aria-hidden="true"></i>
+                                <div class="contact-me-right">
+                                    <p>+77 876 876 876</p>
+                                    <span class="contact-me-right-desc">Telefono</span>
+                                </div>
+                            </li>
+                            <li>
+                                <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                <div class="contact-me-right">
+                                    <p>Kowalski Street 7A <br/>
+                                        Los Angeles</p>
+                                    <span class="contact-me-right-desc">address</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="get-in-touch">
+                        <h2>Formulario de preguntas.</h2>
+                        <p class="font-primary">Envíame tus preguntas y oportunamente estaré contestándote.</p>
+                        <form method="post">
+                        {% csrf_token %}
+                            {% for field in form %}
+                                {% render_field field class='col-xs-12 form-control' placeholder=field.name %}
+                            {% endfor %}
+                            <br>
+                            <button type="submit" class="btn"><i class="fa fa-paper-plane" aria-hidden="true"></i> Enviar</button>
+                        </form>
+                    </div>
+                </section>
+            </div>
+
+
+
+            <!-- Google Map -->
+           {% comment %} <div class="col-xs-12">
+                <section class="white-box contact-map">
+                    <div id="contact-map-inside"></div>
+                </section>
+            </div>{% endcomment %}
+
+        </div>
+    </div>
+</main>
+<!-- end MAIN -->
+{% endblock %}
